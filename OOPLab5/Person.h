@@ -4,7 +4,7 @@
 #include "Object.h"
 using namespace std;
 
-class Person : public Object {//Базовый класс
+class Person : public Object {
 protected:
 	string name;
 	int age;

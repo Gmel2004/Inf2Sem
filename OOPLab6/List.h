@@ -25,6 +25,18 @@ public:
 	Node* operator *() const {
 		return current;
 	}
+	void operator + (int shift) {
+		Node* tmp = current;
+		int i = 0;
+		while (i < shift && current->next != NULL) {
+			current = current->next;
+			i++;
+		}
+		if (i < shift) {
+			cout << "Ќельз€ сместитьс€, выход за пределы списка!\n";
+			current = tmp;
+		}
+	}
 };
 
 class List {

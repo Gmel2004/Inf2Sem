@@ -28,7 +28,7 @@ public:
 	void operator + (int shift) {
 		Node* tmp = current;
 		int i = 0;
-		while (i < shift && current->next != NULL) {
+		while (i < shift && current != NULL && current->next != NULL) {
 			current = current->next;
 			i++;
 		}

@@ -16,9 +16,11 @@ public:
 	List(int count) {
 		n = count;
 		head = new Node<T>;
+		head->key = 0;
 		lastNd = head;
 		for (int i = 1; i < n; i++) {
 			current = new Node<T>;
+			current->key = 0;
 			lastNd->next = current;
 			lastNd = current;
 		}

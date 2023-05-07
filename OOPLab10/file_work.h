@@ -45,6 +45,9 @@ int print_file() {
 		cout << m_Pair << '\n';
 		i++;
 	}
+	if (i == 0) {
+		cout << "Файл пуст!\n";
+	}
 	stream.close();
 	return i;
 }

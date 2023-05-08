@@ -20,4 +20,6 @@ public:
 	Pair operator++(int);
 	int GetFirst();
 	double GetSecond();
+	void SetFirst(int m_first);
+	void SetSecond(double m_second);
 };

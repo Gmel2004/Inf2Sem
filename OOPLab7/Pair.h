@@ -2,26 +2,24 @@
 #include <iostream>
 using namespace std;
 
-struct Pair {
+class Pair {
 	int first;
 	double second;
-	Pair() {
-		first = 0;
-		second = 0;
-	}
-	Pair(int f, double s) {
-		first = f;
-		second = s;
-	}
-	Pair(const Pair& t) {
-		first = t.first;
-		second = t.second;
-	}
-	~Pair() {}
-	friend ostream& operator<<(ostream& out, const Pair& t) {
-		return out << t.first << ":" << t.second << "\n";
-	}
-	friend istream& operator>>(istream& in, Pair& t) {
-		return in >> t.first >> t.second;
-	}
+public:
+	friend istream& operator>>(istream& in, Pair& p);
+	friend ostream& operator<<(ostream& out, const Pair& p);
+	Pair(int, double);			
+	Pair();											
+	Pair(const Pair&);					
+	~Pair();												
+	Pair& operator=(const Pair&);	
+	Pair operator-(const Pair&);
+	Pair& operator+(int);	
+	Pair& operator+(double);
+	Pair& operator++();											
+	Pair operator++(int);
+	int GetFirst() const;
+	double GetSecond() const;
+	void SetFirst(int m_first);
+	void SetSecond(double m_second);
 };

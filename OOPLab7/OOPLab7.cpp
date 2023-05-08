@@ -11,8 +11,8 @@ int main() {
     cout << l << '\n';
     List <Pair> p;
     Pair c;
-    c.first = 9;
-    c.second = 9.4;
+    c.SetFirst(9);
+    c.SetSecond(9.4);
     p << c;
     cout << "List<Pair>:\n";
     cout << p << '\n';

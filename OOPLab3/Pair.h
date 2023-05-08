@@ -8,7 +8,7 @@ class Pair {
 public:
 	friend istream& operator>>(istream& in, Pair& p);
 	friend ostream& operator<<(ostream& out, const Pair& p);
-	Pair(int, double);						
+	Pair(int, double);			
 	Pair();											
 	Pair(const Pair&);					
 	~Pair();												
@@ -17,5 +17,9 @@ public:
 	Pair& operator+(int);	
 	Pair& operator+(double);
 	Pair& operator++();											
-	Pair operator++(int);										
+	Pair operator++(int);
+	int GetFirst() const;
+	double GetSecond() const;
+	void SetFirst(int m_first);
+	void SetSecond(double m_second);
 };

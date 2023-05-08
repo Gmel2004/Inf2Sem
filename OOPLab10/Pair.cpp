@@ -67,3 +67,19 @@ Pair Pair::operator ++(int) {//перегрузка оператора ++ постфикс
 bool Pair::operator>=(int value) {
 	return (this->first >= value && this->second >= value);
 }
+
+int Pair::GetFirst() const {
+	return first;
+}
+
+double Pair::GetSecond() const {
+	return second;
+}
+
+void Pair::SetFirst(int m_first) {
+	first = m_first;
+}
+
+void Pair::SetSecond(double m_second) {
+	second = m_second;
+}

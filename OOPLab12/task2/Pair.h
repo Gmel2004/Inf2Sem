@@ -21,4 +21,6 @@ public:
 	int GetFirst() const;
 	double GetSecond() const;
 	friend bool operator<(const Pair&, const Pair&);
+	void SetFirst(int m_first);
+	void SetSecond(double m_second);
 };

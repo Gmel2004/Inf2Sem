@@ -65,3 +65,11 @@ double Pair::GetSecond() const{
 bool operator < (const Pair& pair1, const Pair& pair) {
 	return (pair1.GetFirst() + pair1.GetSecond() < pair.GetFirst() + pair.GetSecond());
 }
+
+void Pair::SetFirst(int m_first) {
+	first = m_first;
+}
+
+void Pair::SetSecond(double m_second) {
+	second = m_second;
+}

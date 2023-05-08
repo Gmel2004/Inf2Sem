@@ -61,3 +61,11 @@ int Pair::GetFirst() {
 double Pair::GetSecond() {
 	return second;
 }
+
+void Pair::SetFirst(int m_first) {
+	first = m_first;
+}
+
+void Pair::SetSecond(double m_second) {
+	second = m_second;
+}

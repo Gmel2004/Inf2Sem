@@ -3,43 +3,58 @@
 using namespace std;
 
 void PushArithmeticMiddle(list<double>& m_list) {
-	double Sum = 0;
-	for (auto i = m_list.begin(); i != m_list.end(); i++) {
-		Sum += *i;
+	if (m_list.size() > 0) {
+		double Sum = 0;
+		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+			Sum += *i;
+		}
+		m_list.push_back(Sum / m_list.size());
 	}
-	m_list.push_back(Sum / m_list.size());
+	else {
+		cout << "Список пуст!\n";
+	}
 }
 
 void EraseIfInRange(list<double>& m_list, const double BeginValue, const double EndValue) {
-	for (auto i = m_list.begin(); i != m_list.end(); i++) {
+	auto i = m_list.begin();
+	while (i != m_list.end()) {
 		if (*i >= BeginValue && *i <= EndValue) {
 			i = m_list.erase(i);
-			i--;
+		}
+		else {
+			i++;
 		}
 	}
 }
 
 void PlusMinAndMax(list<double>& m_list) {
-	double MaxValue, MinValue;
-	MaxValue = MinValue = *m_list.begin();
+	if (m_list.size() > 0) {
+		double MaxValue, MinValue;
+		MaxValue = MinValue = *m_list.begin();
 
-	for (auto i = m_list.begin(); i != m_list.end(); i++) {
-		if (*i > MaxValue) {
-			MaxValue = *i;
+		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+			if (*i > MaxValue) {
+				MaxValue = *i;
+			}
+			else if (*i < MinValue) {
+				MinValue = *i;
+			}
 		}
-		else if (*i < MinValue) {
-			MinValue = *i;
-		}
-	}
 
-	for (auto i = m_list.begin(); i != m_list.end(); i++) {
-		*i += MaxValue + MinValue;
+		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+			*i += MaxValue + MinValue;
+		}
 	}
 }
 
 void ShowList(const list<double>& m_list) {
-	for (auto i = m_list.begin(); i != m_list.end(); i++) {
-		cout << *i << ' ';
+	if (m_list.size() > 0) {
+		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+			cout << *i << ' ';
+		}
+	}
+	else {
+		cout << "Список пуст!";
 	}
 	cout << '\n';
 }

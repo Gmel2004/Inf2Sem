@@ -28,8 +28,12 @@ public:
 	Node<T>* operator *() const {
 		return current;
 	}
-	void operator + (T value) {
+	Iterator<T>& operator + (T value) {
 		current->key += value;
+		return *this;
+	}
+	void operator = (Node<T>& nd) {
+		*this = &nd;
 	}
 };
 
@@ -121,7 +125,7 @@ public:
 	int length() {
 		return n;
 	}
-	void erase(Iterator<T> I) {
+	Node<T>& erase(Iterator<T> I) {
 		lastNd = head;
 		if (head == *I) {
 			lastNd = head->next;
@@ -133,10 +137,14 @@ public:
 				lastNd = lastNd->next;
 				cout << lastNd->key << ' ';
 			}
-			current = lastNd->next->next;
-			delete lastNd->next;
-			lastNd->next = current;
+			if (lastNd->next != NULL) {
+				current = lastNd->next->next;
+				delete lastNd->next;
+				lastNd->next = current;
+				lastNd = lastNd->next;
+			}
 		}
+		return *lastNd;
 	}
 
 private:

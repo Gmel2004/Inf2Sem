@@ -3,13 +3,18 @@
 using namespace std;
 
 void PushArithmeticMiddle(priority_queue<double>& m_priority_queue) {
-	priority_queue<double> tmp_priority_queue = m_priority_queue;
-	double Sum = 0;
-	while(tmp_priority_queue.size()) {
-		Sum += tmp_priority_queue.top();
-		tmp_priority_queue.pop();
+	if (m_priority_queue.size() > 0) {
+		priority_queue<double> tmp_priority_queue = m_priority_queue;
+		double Sum = 0;
+		while (tmp_priority_queue.size()) {
+			Sum += tmp_priority_queue.top();
+			tmp_priority_queue.pop();
+		}
+		m_priority_queue.push(Sum / m_priority_queue.size());
 	}
-	m_priority_queue.push(Sum / m_priority_queue.size());
+	else {
+		cout << "Очередь пуста!\n";
+	}
 }
 
 void EraseIfInRange(priority_queue<double>& m_priority_queue, const double BeginValue, const double EndValue) {
@@ -24,27 +29,34 @@ void EraseIfInRange(priority_queue<double>& m_priority_queue, const double Begin
 }
 
 void PlusMinAndMax(priority_queue<double>& m_priority_queue) {
-	priority_queue<double> tmp_priority_queue = m_priority_queue;
-	double MaxValue, MinValue;
-	MaxValue = m_priority_queue.top();
+	if (m_priority_queue.size() > 0) {
+		priority_queue<double> tmp_priority_queue = m_priority_queue;
+		double MaxValue, MinValue;
+		MaxValue = m_priority_queue.top();
 
-	while (m_priority_queue.size() > 1) {
+		while (m_priority_queue.size() > 1) {
+			m_priority_queue.pop();
+		}
+		MinValue = m_priority_queue.top();
 		m_priority_queue.pop();
-	}
-	MinValue = m_priority_queue.top();
-	m_priority_queue.pop();
 
-	while (tmp_priority_queue.size()) {
-		m_priority_queue.push(tmp_priority_queue.top() + MaxValue + MinValue);
-		tmp_priority_queue.pop();
+		while (tmp_priority_queue.size()) {
+			m_priority_queue.push(tmp_priority_queue.top() + MaxValue + MinValue);
+			tmp_priority_queue.pop();
+		}
 	}
 }
 
 void ShowQueue(priority_queue<double>& m_priority_queue) {
-	priority_queue<double> tmp_priority_queue = m_priority_queue;
-	while (tmp_priority_queue.size()) {
-		cout << tmp_priority_queue.top() << ' ';
-		tmp_priority_queue.pop();
+	if (m_priority_queue.size() > 0) {
+		priority_queue<double> tmp_priority_queue = m_priority_queue;
+		while (tmp_priority_queue.size()) {
+			cout << tmp_priority_queue.top() << ' ';
+			tmp_priority_queue.pop();
+		}
+	}
+	else {
+		cout << "Очередь пуста!";
 	}
 	cout << '\n';
 }

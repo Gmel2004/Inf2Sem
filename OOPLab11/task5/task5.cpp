@@ -12,7 +12,7 @@ int main() {
 	cout << "Очередь а:\n";
 	a.ShowQueue();
 
-	cout << "Добавляем среднее арифмитическое очереди a\n";
+	cout << "Добавляем среднее арифмитическое очереди a в контейнер\n";
 	a.PushArithmeticMiddle();
 	cout << "Очередь а:\n";
 	a.ShowQueue();

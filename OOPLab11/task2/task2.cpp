@@ -1,28 +1,28 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "Pair.h"
 using namespace std;
-#include <list>
+#include <set>
 
-void PushArithmeticMiddle(list<Pair>& m_list) {
-	if (m_list.size() > 0) {
+void PushArithmeticMiddle(multiset<Pair>& m_multiset) {
+	if (m_multiset.size() > 0) {
 		int SumFirst = 0;
 		double SumSecond = 0;
-		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
 			SumFirst += (*i).GetFirst();
 			SumSecond += (*i).GetSecond();
 		}
-		m_list.push_back(Pair(SumFirst / m_list.size(), SumSecond / m_list.size()));
+		m_multiset.insert(Pair(SumFirst / m_multiset.size(), SumSecond / m_multiset.size()));
 	}
 	else {
-		cout << "Ñïèñîê ïóñò!\n";
+		cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ð¿ÑƒÑÑ‚Ð¾!\n";
 	}
 }
 
-void EraseIfInRange(list<Pair>& m_list, const double BeginValue, const double EndValue) {
-	auto i = m_list.begin();
-	while (i != m_list.end()) {
+void EraseIfInRange(multiset<Pair>& m_multiset, const double BeginValue, const double EndValue) {
+	auto i = m_multiset.begin();
+	while (i != m_multiset.end()) {
 		if (((*i).GetFirst() >= BeginValue && (*i).GetFirst() <= EndValue) || ((*i).GetSecond() >= BeginValue && (*i).GetSecond() <= EndValue)) {
-			i = m_list.erase(i);
+			i = m_multiset.erase(i);
 		}
 		else {
 			i++;
@@ -30,42 +30,38 @@ void EraseIfInRange(list<Pair>& m_list, const double BeginValue, const double En
 	}
 }
 
-void PlusMinAndMax(list<Pair>& m_list) {
-	if (m_list.size() > 0) {
-		int MaxFirstValue, MinFirstValue;
-		MaxFirstValue = MinFirstValue = (*m_list.begin()).GetFirst();
-		double MaxSecondValue, MinSecondValue;
-		MaxSecondValue = MinSecondValue = (*m_list.begin()).GetSecond();
+void PlusMinAndMax(multiset<Pair>& m_multiset) {
+	if (m_multiset.size() > 0) {
+		multiset<Pair> tmp_multiset;
+		Pair MaxValue = *(m_multiset.begin());
+		Pair MinValue = *(m_multiset.begin());
 
-		for (auto i = m_list.begin(); i != m_list.end(); i++) {
-			if ((*i).GetFirst() > MaxFirstValue) {
-				MaxFirstValue = (*i).GetFirst();
+		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
+			if (MaxValue < *i) {
+				MaxValue = *i;
 			}
-			else if ((*i).GetFirst() < MinFirstValue) {
-				MinFirstValue = (*i).GetFirst();
-			}
-			if ((*i).GetSecond() > MaxSecondValue) {
-				MaxSecondValue = (*i).GetSecond();
-			}
-			else if ((*i).GetSecond() < MinSecondValue) {
-				MinSecondValue = (*i).GetSecond();
+			else if (*i < MinValue) {
+				MinValue = *i;
 			}
 		}
 
-		for (auto i = m_list.begin(); i != m_list.end(); i++) {
-			*i + MaxFirstValue + MinFirstValue + MaxSecondValue + MinSecondValue;
+		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
+			Pair c = (*i);
+			c + MaxValue + MinValue;
+			tmp_multiset.insert(c);
 		}
+		m_multiset = tmp_multiset;
 	}
 }
 
-void ShowList(const list<Pair>& m_list) {
-	if (m_list.size() > 0) {
-		for (auto i = m_list.begin(); i != m_list.end(); i++) {
+void ShowMultiset(const multiset<Pair>& m_multiset) {
+	if (m_multiset.size() > 0) {
+		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
 			cout << *i << '\n';
 		}
 	}
 	else {
-		cout << "Ñïèñîê ïóñò!";
+		cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ð¿ÑƒÑÑ‚Ð¾!";
 	}
 	cout << '\n';
 }
@@ -74,25 +70,25 @@ int main() {
 
 	system("chcp 1251 > NULL");
 
-	list<Pair> a = { Pair(6, 4), Pair(7, 9), Pair(2, 3.5) };
+	multiset<Pair> a = { Pair(6, 4), Pair(7, 9), Pair(2, 3.5) };
 
-	cout << "Ñïèñîê à:\n";
-	ShowList(a);
+	cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ñ Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð°Ð¼Ð¸ Ð°:\n";
+	ShowMultiset(a);
 
-	cout << "Äîáàâëÿåì ñðåäíåå àðèôìèòè÷åñêîå ñïèñêà à â êîíåö êîíòåéíåðà\n";
+	cout << "Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÑ€ÐµÐ´Ð½ÐµÐµ Ð°Ñ€Ð¸Ñ„Ð¼Ð¸Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð¼Ð½Ð¾Ð¶ÐµÑÑ‚Ð²Ð° Ð° Ð² ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€\n";
 	PushArithmeticMiddle(a);
-	cout << "Ñïèñîê à:\n";
-	ShowList(a);
+	cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ð°:\n";
+	ShowMultiset(a);
 
-	cout << "Óäàëÿåì èç ñïèñêà à ýëåìåíòû, çíà÷åíèÿ êîòîðûõ âõîäÿò â äèàïàçîí îò 2 äî 3\n";
+	cout << "Ð£Ð´Ð°Ð»ÑÐµÐ¼ Ð¸Ð· Ð¼Ð½Ð¾Ð¶ÐµÑÑ‚Ð²Ð° Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹, Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð²Ñ…Ð¾Ð´ÑÑ‚ Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½ Ð¾Ñ‚ 2 Ð´Ð¾ 3\n";
 	EraseIfInRange(a, 2, 3);
-	cout << "Ñïèñîê à:\n";
-	ShowList(a);
+	cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ð°:\n";
+	ShowMultiset(a);
 
-	cout << "Ê êàæäîìó ýëåìåíòó äîáàâëÿåì ñóììó ìèíèìàëüíîãî è ìàêñèìàëüíîãî ýëåìåíòîâ êîíòåéíåðà\n";
+	cout << "Ðš ÐºÐ°Ð¶Ð´Ð¾Ð¼Ñƒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñƒ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÑƒÐ¼Ð¼Ñƒ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¸ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€Ð°\n";
 	PlusMinAndMax(a);
-	cout << "Ñïèñîê à:\n";
-	ShowList(a);
+	cout << "ÐœÐ½Ð¾Ð¶ÐµÑÑ‚Ð²Ð¾ Ð°:\n";
+	ShowMultiset(a);
 
 	return 0;
 }

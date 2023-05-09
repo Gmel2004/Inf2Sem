@@ -18,8 +18,10 @@ public:
 	Pair& operator+(double);
 	Pair& operator++();											
 	Pair operator++(int);
-	int GetFirst();
-	double GetSecond();
+	int GetFirst() const;
+	double GetSecond() const;
+	friend bool operator<(const Pair&, const Pair&);
 	void SetFirst(int m_first);
 	void SetSecond(double m_second);
+	Pair& operator + (const Pair& m_pair);
 };

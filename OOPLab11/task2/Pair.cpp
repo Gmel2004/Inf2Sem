@@ -54,12 +54,16 @@ Pair Pair::operator ++(int) {//перегрузка оператора ++ постфикс
 	return temp;//сначала нужно вывести без изменений
 }
 
-int Pair::GetFirst() {
+int Pair::GetFirst() const{
 	return first;
 }
 
-double Pair::GetSecond() {
+double Pair::GetSecond() const{
 	return second;
+}
+
+bool operator < (const Pair& pair1, const Pair& pair) {
+	return (pair1.GetFirst() + pair1.GetSecond() < pair.GetFirst() + pair.GetSecond());
 }
 
 void Pair::SetFirst(int m_first) {
@@ -68,4 +72,10 @@ void Pair::SetFirst(int m_first) {
 
 void Pair::SetSecond(double m_second) {
 	second = m_second;
+}
+
+Pair& Pair::operator + (const Pair& m_pair) {
+	first += m_pair.first;
+	second += m_pair.second;
+	return *this;
 }

@@ -73,3 +73,9 @@ void Pair::SetFirst(int m_first) {
 void Pair::SetSecond(double m_second) {
 	second = m_second;
 }
+
+Pair& Pair::operator + (const Pair& m_pair) {
+	first += m_pair.first;
+	second += m_pair.second;
+	return *this;
+}

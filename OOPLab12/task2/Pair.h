@@ -23,4 +23,5 @@ public:
 	friend bool operator<(const Pair&, const Pair&);
 	void SetFirst(int m_first);
 	void SetSecond(double m_second);
+	Pair& operator + (const Pair& m_pair);
 };

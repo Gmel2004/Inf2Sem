@@ -33,30 +33,21 @@ void EraseIfInRange(multiset<Pair>& m_multiset, const double BeginValue, const d
 void PlusMinAndMax(multiset<Pair>& m_multiset) {
 	if (m_multiset.size() > 0) {
 		multiset<Pair> tmp_multiset;
-		int MaxFirstValue, MinFirstValue;
-		Pair p = *m_multiset.begin();
-		MaxFirstValue = MinFirstValue = p.GetFirst();
-		double MaxSecondValue, MinSecondValue;
-		MaxSecondValue = MinSecondValue = p.GetSecond();
+		Pair MaxValue = *(m_multiset.begin());
+		Pair MinValue = *(m_multiset.begin());
 
 		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
-			if ((*i).GetFirst() > MaxFirstValue) {
-				MaxFirstValue = (*i).GetFirst();
+			if (MaxValue < *i) {
+				MaxValue = *i;
 			}
-			else if ((*i).GetFirst() < MinFirstValue) {
-				MinFirstValue = (*i).GetFirst();
-			}
-			if ((*i).GetSecond() > MaxSecondValue) {
-				MaxSecondValue = (*i).GetSecond();
-			}
-			else if ((*i).GetSecond() < MinSecondValue) {
-				MinSecondValue = (*i).GetSecond();
+			else if (*i < MinValue) {
+				MinValue = *i;
 			}
 		}
 
 		for (auto i = m_multiset.begin(); i != m_multiset.end(); i++) {
 			Pair c = (*i);
-			c + MaxFirstValue + MinFirstValue + MaxSecondValue + MinSecondValue;
+			c + MaxValue + MinValue;
 			tmp_multiset.insert(c);
 		}
 		m_multiset = tmp_multiset;

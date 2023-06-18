@@ -1,2 +1,0 @@
-D:\dx\x64\Debug\dx.exe
-E:\Инфа 2 сем\6lab\x64\Debug\dx.exe

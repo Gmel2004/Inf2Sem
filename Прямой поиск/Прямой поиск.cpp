@@ -13,7 +13,7 @@ int main() {
 	for (int i = 0; i < s.length() && !find; i++) {
 		if (i + subS.length() <= s.length()) {
 			find = true;
-			for (int j = i; j < i + subS.length(); j++) {
+			for (int j = i; j < i + subS.length() && find; j++) {
 				if (s[j] != subS[j-i]) {
 					find = false;
 				}
